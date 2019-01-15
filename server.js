@@ -14,6 +14,18 @@ const api = require('./server/routes/api');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const allowedExt = [
+  '.js',
+  '.ico',
+  '.css',
+  '.png',
+  '.jpg',
+  '.woff2',
+  '.woff',
+  '.ttf',
+  '.svg',
+];
+
 //Serve static files
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -22,7 +34,12 @@ app.use('/api', api);
 
 //Return other routes Angular index file..
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, 'dist/codepostnet/index.html'));
+
+  if (allowedExt.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+        res.sendFile(path.join(__dirname, `dist/codepostnet/${req.url}`));
+      } else {
+        res.sendFile(path.join(__dirname, 'dist/codepostnet/index.html'));
+      }
 });
 
 //Set port
