@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="columns small-12 medium-6 large-4 posts">
+  <div class="columns small-12 medium-6 large-4 posts" *ngFor="let post of posts">
     <div class="post-container">
       <div class="row">
         <div class="columns small-12 Large-10">
-          <a routerLink="/" class="post-title">Create a Mean Stack</a>
+          <a routerLink="/" class="post-title">{{ post.title }}</a>
        </div>
-       <div class="columns small-12 Large-10 show-for-large">
+       <div class="columns small-12 Large-2 show-for-large">
          <a href="#" target="_blank" class="external">
            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
            	 viewBox="0 0 96.8 96.8" style="enable-background:new 0 0 96.8 96.8;" xml:space="preserve">
@@ -20,7 +20,7 @@
            </a>
          </div>
      </div>
-     <p>Our Description here</p>
+     <p>{{ post.description }}</p>
      <a routerLink="/" class="cta-btn btn2">More Info</a>
     </div>
   </div>
